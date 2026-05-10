@@ -1,0 +1,17 @@
+interface Props {
+  title: string;
+  subtitle?: string;
+  action?: React.ReactNode;
+}
+
+export default function PageHeader({ title, subtitle, action }: Props) {
+  return (
+    <div className="flex items-center justify-between px-6 py-5 border-b border-slate-200 bg-white">
+      <div>
+        <h1 className="text-xl font-bold text-slate-900">{title}</h1>
+        {subtitle && <p className="text-sm text-slate-500 mt-0.5">{subtitle}</p>}
+      </div>
+      {action && <div>{action}</div>}
+    </div>
+  );
+}
