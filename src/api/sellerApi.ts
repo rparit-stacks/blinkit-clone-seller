@@ -230,6 +230,27 @@ export interface WithdrawalRequest {
   processedAt?: string;
 }
 
+// ─── OTP ─────────────────────────────────────────────────────────────────────
+export const sellerSendOtp = (email: string) =>
+  post<{ otp?: string }>("/api/seller/auth/send-otp", { email });
+export const sellerVerifyOtp = (email: string, otp: string) =>
+  post<{ verified: string }>("/api/seller/auth/verify-otp", { email, otp });
+
+// ─── File upload ─────────────────────────────────────────────────────────────
+export async function uploadFile(file: File, folder = "seller-docs"): Promise<string> {
+  const form = new FormData();
+  form.append("file", file);
+  form.append("folder", folder);
+  const res = await fetch(`${BASE}/api/upload`, { method: "POST", body: form });
+  const json = await res.json();
+  if (!res.ok || !json.success) throw new Error(json.message ?? "Upload failed");
+  return json.data.url as string;
+}
+
+// Update a single document field by URL
+export const uploadDocument = (field: string, url: string) =>
+  request<string>(`/api/seller/profile/documents?field=${encodeURIComponent(field)}&url=${encodeURIComponent(url)}`, { method: "POST" });
+
 // ─── Auth ─────────────────────────────────────────────────────────────────────
 export const sellerRegister = (data: {
   fullName: string; email: string; phone: string; password: string;

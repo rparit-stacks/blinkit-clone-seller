@@ -12,6 +12,7 @@ import Orders from "./pages/orders/Orders";
 import MyStore from "./pages/store/Store";
 import Profile from "./pages/profile/Profile";
 import WalletPage from "./pages/wallet/Wallet";
+import Notifications from "./pages/notifications/Notifications";
 
 const qc = new QueryClient({
   defaultOptions: { queries: { staleTime: 30_000, retry: 1 } },
@@ -38,6 +39,7 @@ export default function App() {
               <Route path="/store" element={<MyStore />} />
               <Route path="/wallet" element={<WalletPage />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/notifications" element={<Notifications />} />
             </Route>
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
