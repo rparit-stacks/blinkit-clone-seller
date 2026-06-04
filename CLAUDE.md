@@ -16,7 +16,7 @@ Seller portal. Store owners manage their products, view orders, track earnings, 
 ## Environment
 Create `.env.local` before running:
 ```
-VITE_API_BASE_URL=https://nainistore.com
+VITE_API_BASE_URL=https://www.nainistore.in
 ```
 
 ## Dev
