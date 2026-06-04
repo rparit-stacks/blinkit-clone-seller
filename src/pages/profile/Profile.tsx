@@ -94,8 +94,8 @@ export default function Profile() {
     REJECTED: { icon: XCircle, color: "text-red-600", bg: "bg-red-50 border-red-200", label: "Application Rejected", sub: profile.rejectionReason ? `Reason: ${profile.rejectionReason}` : "Contact support for assistance." },
   }[profile.status];
 
-  const uploadedDocCount = DOC_FIELDS.filter(d => !!(profile as Record<string, unknown>)[d.key]).length;
-  const requiredMissing = DOC_FIELDS.filter(d => d.required && !(profile as Record<string, unknown>)[d.key]);
+  const uploadedDocCount = DOC_FIELDS.filter(d => !!(profile as unknown as Record<string, unknown>)[d.key]).length;
+  const requiredMissing = DOC_FIELDS.filter(d => d.required && !(profile as unknown as Record<string, unknown>)[d.key]);
 
   return (
     <div className="min-h-full">
@@ -235,7 +235,7 @@ export default function Profile() {
           </div>
           <div className="p-5 space-y-3">
             {DOC_FIELDS.map(({ key, label, desc, required }) => {
-              const url = (profile as Record<string, unknown>)[key] as string | undefined;
+              const url = (profile as unknown as Record<string, unknown>)[key] as string | undefined;
               const isUploading = uploadingDoc === key;
               return (
                 <div key={key} className={clsx(

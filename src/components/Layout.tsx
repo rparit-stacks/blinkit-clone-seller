@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import { useQuery } from "@tanstack/react-query";
 import {
   LayoutDashboard, Package, ShoppingBag, Store, User, LogOut,
-  Menu, X, Bell, Wallet, TrendingUp, ChevronRight
+  Menu, X, Bell, Wallet, ChevronRight
 } from "lucide-react";
 import { fetchNotifications, getUnreadCount } from "../lib/notificationsApi";
 import clsx from "clsx";
